@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Card, Container, CardHeader, CardBody, CardText } from 'reactstrap';
+
 class Posts extends Component {
     constructor(props) {
         super(props);
@@ -21,14 +23,20 @@ class Posts extends Component {
             return (<div>Loading...</div>)
 
         return ( 
-                <div>
-                    <h2>Posts</h2>
+            <Container className="col-lg-8 col-sm-12">
+                <Card className="mt-5">
+                    <CardHeader>Top Stories</CardHeader>
+                    <CardBody>
+                        <ul>
                         { 
                             posts.map(
-                            post => <div key={post.id}>{post.title} - by <b>{post.user.username}</b></div>
+                                post => <a href={"/post/"+post.id}><li className="bb1"><CardText>{post.title} - by <b>{post.user.username}</b></CardText></li></a>
                             )
                         }
-                </div> 
+                    </ul>
+                    </CardBody>
+                </Card>
+            </Container>
         );
     }
 }
