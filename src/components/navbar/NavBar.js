@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, NavLink } from 'reactstrap';
 
 class NavBar extends Component {
