@@ -3,7 +3,8 @@ import { Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from '../home/Home';
-import Posts from '../posts/Posts';
+import Register from '../auth/Register';
+import Login from '../auth/Login';
 import Post from '../post/Post';
 
 class App extends Component {
@@ -16,8 +17,10 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path='/' exact={true} component={Home} />
-          <Route path='/posts' exact={true} component={Posts} />
           <Route path='/post/:postId' component={Post} />
+          <Route path='/register' exact={true} component={Register} />
+          <Route path='/login' exact={true} component={Login} />
+
         </Switch>
       </Router>
     );
