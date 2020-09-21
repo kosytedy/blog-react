@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import { Card, Container, CardHeader, CardBody, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import NavBar from '../navbar/NavBar';
+import TokenContext from "../app/TokenContext";
 
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             username: "",
-            password: ""
+            password: "",
+            token: null
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -35,7 +37,8 @@ class Register extends Component {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            localStorage.setItem('jwttkn', data.token);
+            this.setState({token: data.token});
+            sessionStorage.setItem('jwttkn', data.token);
         })
         .catch((error) => {
             console.error('Error:', error);
