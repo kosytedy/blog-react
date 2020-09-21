@@ -19,7 +19,9 @@ class Posts extends Component {
                     posts : data, 
                     isLoading : false 
                 })
-            );
+            ).catch(function(error) {
+                console.log('Request failed.', error);
+            });
     }
 
     render() { 
