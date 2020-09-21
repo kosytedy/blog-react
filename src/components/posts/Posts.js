@@ -11,16 +11,21 @@ class Posts extends Component {
         }
     }
 
-    async componentDidMount(){
-        const response = await fetch('/api/post');
-        const body = await response.json();
-        this.setState({ posts : body, isLoading : false });
+    componentDidMount(){
+        fetch('/api/post')
+            .then(res => res.json())
+            .then(data => 
+                this.setState({ 
+                    posts : data, 
+                    isLoading : false 
+                })
+            );
     }
 
     render() { 
         const {posts, isLoading} = this.state;
         if(isLoading)
-            return (<div>Loading...</div>)
+            return (<div>Loading posts...</div>)
 
         return ( 
             <Container className="col-lg-8 col-sm-12">

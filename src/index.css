@@ -24,6 +24,12 @@ code {
   padding: 7px;
   font-size: 14px;
 }
-b {
-  font-size: 15px;
+
+.card-body a{
+  color: #212529;
+}
+.card-body a:hover, .card-body a li:hover{
+  color: #212529;
+  background-color: #f0ebeb;
+  text-decoration: none;
 }

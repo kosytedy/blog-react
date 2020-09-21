@@ -18,7 +18,7 @@ class Post extends Component {
         let postId = this.props.match.params.postId;
         fetch("/api/post/"+postId)
             .then(res => res.json())
-            .then(data => { console.log(data);
+            .then(data => {
                 this.setState({
                     isLoaded: true,
                     post: data,
@@ -40,7 +40,7 @@ class Post extends Component {
                     <CardHeader>{post.title}</CardHeader>
                     <CardBody>
                         <ul>
-                            <li className="bb1"><CardText>Posted by <b>{post.user.username}</b> on <b><Moment format="D MMM YYYY">{post.createdAt}</Moment></b> </CardText></li>
+                            <li className="bb1"><CardText style={{fontSize: 12}}>Posted by <b>{post.user.username}</b> on <b><Moment format="D MMM YYYY">{post.createdAt}</Moment></b> </CardText></li>
                         </ul>
                         <div className="p-4">{post.content}</div>
                     </CardBody>
