@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Nav, NavLink } from 'reactstrap';
 
+
+import LoginContext from "../app/LoginContext";
+
 class NavBar extends Component {
     
     constructor(props) {
@@ -15,25 +18,27 @@ class NavBar extends Component {
         const toggle = () => this.setState({navbarIsOpen:!this.state.navbarIsOpen});
 
         return ( 
-            <div>
-                <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">MyForum</NavbarBrand>
-                    <NavbarToggler onClick={toggle} />
-                    <Collapse isOpen={this.state.navbarIsOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/posts">Posts</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/register">Register</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/login">Login</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+            <LoginContext.Consumer>
+                {(isLoggedIn) => (
+                    <Navbar color="dark" dark expand="md">
+                        <NavbarBrand href="/">MyForum</NavbarBrand>
+                        <NavbarToggler onClick={toggle} />
+                        <Collapse isOpen={this.state.navbarIsOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="/posts">Posts</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/register">Register</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/login">Login</NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+                )}
+            </LoginContext.Consumer>
         );
     }
 }

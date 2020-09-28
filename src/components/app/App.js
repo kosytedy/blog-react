@@ -18,13 +18,30 @@ class App extends Component {
         <Switch>
           <Route path='/' exact={true} component={Home} />
           <Route path='/post/:postId' component={Post} />
-          <Route path='/register' exact={true} component={Register} />
-          <Route path='/login' exact={true} component={Login} />
-
+          <Route path="/"
+              render={props => {
+                  if (!this.isLoggedIn()) {
+                      return <AuthRoutes {...props} />;
+                  }
+              }} />
         </Switch>
       </Router>
     );
   }
+
+  isLoggedIn(){
+    return sessionStorage.getItem("jwttkn") !== null
+  }
 }
- 
+
+class AuthRoutes extends Component {
+  render() {
+      return (
+          <Switch>
+            <Route path='/register' exact={true} component={Register} />
+            <Route path='/login' exact={true} component={Login} />
+          </Switch>
+      )
+  }
+}
 export default App;

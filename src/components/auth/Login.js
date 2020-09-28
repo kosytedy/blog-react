@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 
 import { Card, Container, CardHeader, CardBody, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import NavBar from '../navbar/NavBar';
-import TokenContext from "../app/TokenContext";
+import LoginContext from "../app/LoginContext";
 
 class Register extends Component {
     constructor(props) {
@@ -45,7 +46,12 @@ class Register extends Component {
         });
     }
 
+    isLoggedIn(){
+        return sessionStorage.getItem("jwttkn") !== null && this.state.token !== null;
+    }
+
     render() { 
+        if(this.isLoggedIn()) return <LoginContext.Provider value={this.isLoggedIn()}> <Redirect to="/" /> </LoginContext.Provider>
         return ( 
             <div>
                 <NavBar />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 
 import { Card, Container, CardHeader, CardBody, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
@@ -12,7 +13,8 @@ class Register extends Component {
             lastname: "",
             email: "",
             username: "",
-            password: ""
+            password: "",
+            registered: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,6 +40,7 @@ class Register extends Component {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
+            if(data.id) this.setState({registered:true});
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -45,6 +48,7 @@ class Register extends Component {
     }
 
     render() { 
+        if(this.state.registered) return <Redirect to="/login"/>
         return ( 
             <div>
                 <NavBar />
@@ -78,7 +82,7 @@ class Register extends Component {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row>
-                                    <Label for="examplePassword" sm={2}>Password</Label>
+                                    <Label for="password" sm={2}>Password</Label>
                                     <Col sm={10}>
                                     <Input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter password" />
                                     </Col>

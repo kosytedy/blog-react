@@ -37,7 +37,7 @@ class Posts extends Component {
                         <ul>
                         { 
                             posts.map(
-                                post => <a href={"/post/"+post.id}><li className="bb1"><CardText>{post.title} - by <b>{post.user.username}</b></CardText></li></a>
+                                post => <a href={"/post/"+post.id} key={post.id}><li className="bb1"><CardText>{post.title} - by <b>{post.user.username}</b></CardText></li></a>
                             )
                         }
                     </ul>
